@@ -97,13 +97,13 @@ CREATE TABLE IF NOT EXISTS ADRESSE(
 INSERT INTO ADRESSE (ID, NOM, LIEU1, LIEU2, ADRESSE, VILLE, PROVINCE, CP)
        VALUES (1, 'Centre d''études sur le stress humain',
                   'Centre de recherche de l''institut universitaire en santé mentale de Montréal',	    
-		  'Pavillon Fernand-Séguin', '7331, rue Hochelaga', 'Montréal' 'Québec', 'H1N-3V2'),
+		  'Pavillon Fernand-Séguin', '7331, rue Hochelaga', 'Montréal', 'Québec', 'H1N-3V2'),
               (2, 'Département d''ophtalmologie', 'Centre de recherche', 'Hôpital Maisonneuve-Rosemont',
                   '5415, boul. l''Assomption', 'Montréal', 'Québec', 'H1T-2M4'),
               (3, 'Département d''ophtalmologie', 'Faculté de Médecine', 'Université de Montréal',
                   'C.P. 6128, Succ. Centre-Ville', 'Montréal', 'Québec', 'H3C-3J7'),
               (4, 'Centre de recherche', 'Institut universitaire en santé mentale de Montréal', '',
-                  '7331, rue Hochelaga', 'Montréal' 'Québec', 'H1N-3V2'),
+                  '7331, rue Hochelaga', 'Montréal', 'Québec', 'H1N-3V2'),
               (5, 'GRIP', 'Université de Montréal', '', '3050, Édouard-Montpetit',
 	          'Montréal', 'Québec', 'H3T-1J7');
 
