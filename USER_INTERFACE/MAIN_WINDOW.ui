@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Gestionnaire de facture</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>461</width>
+      <height>521</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>50</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ajouter une facture</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>100</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Retirer une facture</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFichier">
+    <property name="title">
+     <string>Fichier</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuClient">
+    <property name="title">
+     <string>Client</string>
+    </property>
+    <addaction name="actionG_rer_les_clients"/>
+   </widget>
+   <widget class="QMenu" name="menuAide">
+    <property name="title">
+     <string>Aide</string>
+    </property>
+    <addaction name="action_propos"/>
+   </widget>
+   <widget class="QMenu" name="menuRapport">
+    <property name="title">
+     <string>Rapport</string>
+    </property>
+    <addaction name="actionPar_client"/>
+    <addaction name="actionPar_ann_e"/>
+   </widget>
+   <widget class="QMenu" name="menuFacture">
+    <property name="title">
+     <string>Facture</string>
+    </property>
+    <addaction name="actionCr_er_une_facture"/>
+    <addaction name="actionVisionner_les_factures"/>
+   </widget>
+   <addaction name="menuFichier"/>
+   <addaction name="menuClient"/>
+   <addaction name="menuRapport"/>
+   <addaction name="menuFacture"/>
+   <addaction name="menuAide"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="action_propos">
+   <property name="text">
+    <string>À propos</string>
+   </property>
+  </action>
+  <action name="actionG_rer_les_clients">
+   <property name="text">
+    <string>Gérer les clients</string>
+   </property>
+  </action>
+  <action name="actionPar_client">
+   <property name="text">
+    <string>Par client</string>
+   </property>
+  </action>
+  <action name="actionPar_ann_e">
+   <property name="text">
+    <string>Par année</string>
+   </property>
+  </action>
+  <action name="actionVisionner_les_factures">
+   <property name="text">
+    <string>Visionner les factures</string>
+   </property>
+  </action>
+  <action name="actionCr_er_une_facture">
+   <property name="text">
+    <string>Créer une facture</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

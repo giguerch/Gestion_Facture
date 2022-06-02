@@ -1,0 +1,62 @@
+
+\documentclass{facture} % Use the custom facture class (facture.cls)
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+
+\def \tab {\hspace*{3ex}} % Define \tab to create some horizontal white space
+
+\begin{document}
+
+Facture: \VAR{Name} \hfill Charles-Édouard Giguère, M.Sc. \\
+\null \hfill Statisticien \\
+\null \hfill N.A.S. 272-211-582 \\
+\null \hfill 2277 Pierre-Tétreault,\\
+\null \hfill Montréal, QC, H1L 4Z1 \\
+\hrule height 2 pt \relax % Horizontal line
+
+\bigskip
+\bigskip
+
+\textbf{ Facturé à:} \\
+\VAR{CLIENT}
+
+\bigskip
+\bigskip
+
+\textbf{\underline{Projet}: \VAR{PROJET}}
+
+\bigskip
+    
+\textbf{\underline{Période}: \VAR{PERIODE}} 
+
+\bigskip
+
+\textbf{\underline{Date de facturation}: \VAR{DATE}} 
+
+\bigskip
+\bigskip
+\bigskip
+
+
+\begin{center}
+  \begin{tabular}[htp!]{l l r}
+    \hline
+    \textbf{Date} & \textbf{Type d'activités} & \textbf{Nombre d'heures} \\
+    \hline \hline
+    \VAR{ACTIVITES}
+    
+  \end{tabular}
+\end{center}
+
+\bigskip
+
+\textbf{\underline{Tarif horaire}: \VAR{TARIF}\$/hr}
+
+\bigskip
+
+\textbf{\underline{Montant total}: \VAR{TOTAL} hrs  $\times$ \VAR{TARIF}\$/hr
+  = \VAR{TOTALTARIF}\$} \\
+\textbf{(Taxes et bénéfices inclus)}
+
+\end{document}
