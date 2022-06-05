@@ -9,7 +9,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog
-from CLIENT import CLIENT, CLIENT_LIST
+from CLIENT import CLIENT_LIST
 from ADRESSE import ADRESSE
 from ADRESSE_UI import Ui_ADRESSE
 
@@ -35,7 +35,7 @@ class Ui_CLIENT(QDialog):
         self.NewClient_Titre_Edit.setObjectName("NewClient_Titre_Edit")
         self.NewClient_Label = QtWidgets.QLabel(self)
         self.NewClient_Label.setGeometry(QtCore.QRect(30, 450, 131, 21))
-               
+
         font = QtGui.QFont()
         font.setPointSize(10)
         self.NewClient_Label.setFont(font)
@@ -47,7 +47,7 @@ class Ui_CLIENT(QDialog):
         self.RetirerClient_Bouton = QtWidgets.QPushButton(self)
         self.RetirerClient_Bouton.setGeometry(QtCore.QRect(140, 410, 93, 31))
         self.RetirerClient_Bouton.setObjectName("RetirerClient_Bouton")
-        
+
         self.SelectClient_Label = QtWidgets.QLabel(self)
         self.SelectClient_Label.setGeometry(QtCore.QRect(10, 0, 201, 31))
         font = QtGui.QFont()
@@ -153,7 +153,8 @@ class Ui_CLIENT(QDialog):
         self.buttonBox = QtWidgets.QDialogButtonBox(self)
         self.buttonBox.setGeometry(QtCore.QRect(450, 530, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel |
+                                          QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.CL = CLIENT_LIST()
         self.NewClient_Label_2 = QtWidgets.QLabel(self)
@@ -196,8 +197,7 @@ class Ui_CLIENT(QDialog):
     def Ouvrir_Adresse(self):
         diag = QDialog
         Ui_ADRESSE(diag)
-        if (len(self.Liste_Client.selectedIndexes()) != 0 and            
-            diag.id != -1):
+        if (len(self.Liste_Client.selectedIndexes()) != 0 and diag.id != -1):
             i = self.Liste_Client.selectedIndexes()[0]
             ind = int(i.row())
             test = -1
@@ -208,19 +208,17 @@ class Ui_CLIENT(QDialog):
                     pass
                 if test == ind:
                     ind = i
-                    break        
-            ID = self.CL.CL[ind].ID            
-            self.CL.update(ID, ID_ADRESSE = diag.id)
+                    break
+            ID = self.CL.CL[ind].ID
+            self.CL.update(ID, ID_ADRESSE=diag.id)
             self.change_adresse()
-        
-            
-        
+
     def Filter(self):
         txt_filter = self.ChercherClient_Edit.text()
         if txt_filter != "Chercher Client":
             self.CL.filter(txt_filter)
-        self.Reload_Item()    
-        
+        self.Reload_Item()
+
     def Retirer(self):
         i = self.Liste_Client.selectedIndexes()[0]
         ind = int(i.row())
@@ -232,19 +230,20 @@ class Ui_CLIENT(QDialog):
                 pass
             if test == ind:
                 ind = i
-                break        
+                break
         ID = self.CL.CL[ind].ID
         self.CL.delete(ID)
         self.Reload_Item()
-        
+
     def Reload_Item(self):
         self.Liste_Client.clear()
-        self.id_list.clear()        
+        self.id_list.clear()
         for i, cl in enumerate(self.CL.CL):
-            if self.CL.CLF[i] :
-                item = QtWidgets.QListWidgetItem("{} {} {}".format(cl.TITRE_CLIENT,
-                                                                   cl.PRENOM_CLIENT,
-                                                                   cl.NOM_CLIENT))
+            if self.CL.CLF[i]:
+                CL = "{} {} {}".format(cl.TITRE_CLIENT,
+                                       cl.PRENOM_CLIENT,
+                                       cl.NOM_CLIENT)
+                item = QtWidgets.QListWidgetItem(CL)
                 self.id_list.append(cl.ID)
                 self.Liste_Client.addItem(item)
 
@@ -253,7 +252,7 @@ class Ui_CLIENT(QDialog):
         prenom = self.NewClient_Prenom_Edit.text()
         nom = self.NewClient_Nom_Edit.text()
         id = self.CL.max_id() + 1
-        self.CL.add(id, titre, prenom, nom)        
+        self.CL.add(id, titre, prenom, nom)
         self.Filter()
 
     def change_adresse(self):
@@ -267,9 +266,8 @@ class Ui_CLIENT(QDialog):
                 pass
             if test == ind:
                 ind = i
-                break  
-        ID = self.CL.CL[ind].ID
-        ID_ADRESSE = self.CL.CL[ind].ID_ADRESSE        
+                break
+        ID_ADRESSE = self.CL.CL[ind].ID_ADRESSE
         if ID_ADRESSE != '':
             AD = ADRESSE()
             AD.from_id(ID_ADRESSE)
@@ -313,7 +311,7 @@ class Ui_CLIENT(QDialog):
         self.NouveauClient_Bouton.setText(_translate("Dialog", "Ajouter"))
         self.RetirerClient_Bouton.setText(_translate("Dialog", "Retirer"))
         self.SelectClient_Label.setText(_translate("Dialog",
-                                                   "Sélectionner le client"))        
+                                                   "Sélectionner le client"))
         self.label_6.setText(_translate("Dialog", "Lieu 2"))
         self.label_9.setText(_translate("Dialog", "Province"))
         self.label_7.setText(_translate("Dialog", "Adresse"))
@@ -330,4 +328,3 @@ class Ui_CLIENT(QDialog):
         self.Province_Combo.setItemText(1, _translate("Dialog", "Ontario"))
         self.NewClient_Label_2.setText(_translate("Dialog", "Prénom"))
         self.NewClient_Label_3.setText(_translate("Dialog", "Nom de famille"))
-

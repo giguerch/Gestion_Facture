@@ -1,49 +1,50 @@
-### -*-       Coding: utf-8         -*-
+# -*-       Coding: utf-8         -*-
 
-### Interface pour gérer les clients.
+# Interface pour gérer les clients.
 
-##############################
-## Base de données.         ##
-##                          ##
-##  - CLIENT                ##
-##    + [ID]                ##
-##    + [NOM_CLIENT]        ##
-##    + [ID_ADRESSE]        ##
-##                          ##
+############################
+# Base de données.         ##
+#                          ##
+#  - CLIENT                ##
+#    + [ID]                ##
+#    + [NOM_CLIENT]        ##
+#    + [ID_ADRESSE]        ##
+#                          ##
 ##############################
 
 import sqlite3
 
+
 class CLIENT:
     """Sert à creer un client individuel"""
-    
-    def __init__(self, ID = '', TITRE_CLIENT = '', PRENOM_CLIENT = '',
-                 NOM_CLIENT = '', ID_ADRESSE = ''):
+
+    def __init__(self, ID='', TITRE_CLIENT='', PRENOM_CLIENT='',
+                 NOM_CLIENT='', ID_ADRESSE=''):
         """
-           Initialise les attributs. Certains (ou tous les) attributs 
+           Initialise les attributs. Certains (ou tous les) attributs
            peuvent être nuls ('')
         """
-        self.ID            = ID
-        self.TITRE_CLIENT  = TITRE_CLIENT 
+        self.ID = ID
+        self.TITRE_CLIENT = TITRE_CLIENT
         self.PRENOM_CLIENT = PRENOM_CLIENT
-        self.NOM_CLIENT    = NOM_CLIENT
-        self.ID_ADRESSE    = ID_ADRESSE
+        self.NOM_CLIENT = NOM_CLIENT
+        self.ID_ADRESSE = ID_ADRESSE
 
     def from_id(self, ID):
-        if ID != None:
+        if ID is not None:
             conn = None
             try:
                 conn = sqlite3.connect("FACTURE.sqlt")
-            except Error as e:
+            except sqlite3.Error as e:
                 print(e)
             cur = conn.cursor()
             cur.execute("SELECT * FROM CLIENT WHERE ID = {}".format(ID))
             rows = cur.fetchall()
-            self.ID            = ID
-            self.TITRE_CLIENT  = rows[0][1]
+            self.ID = ID
+            self.TITRE_CLIENT = rows[0][1]
             self.PRENOM_CLIENT = rows[0][2]
-            self.NOM_CLIENT    = rows[0][3]
-            self.ID_ADRESSE    = rows[0][4]
+            self.NOM_CLIENT = rows[0][3]
+            self.ID_ADRESSE = rows[0][4]
 
     def update(self, **kwargs):
         """You can update one or more of the 5 attributes of clients"""
@@ -58,7 +59,7 @@ class CLIENT:
                 self.NOM_CLIENT = value
             elif "ID_ADRESSE" == key:
                 self.ID_ADRESSE = value
-        
+
     def print(self):
         """Affiche les valeurs du Client """
         print("{}, {} {} {}, {}".format(self.ID, self.TITRE_CLIENT,
@@ -67,14 +68,14 @@ class CLIENT:
 
     def __lt__(self, other):
         """ Fonction pour ordonner la liste de client par ordre alphabétique"""
-        left  = str(self.NOM_CLIENT) + str(self.PRENOM_CLIENT)
+        left = str(self.NOM_CLIENT) + str(self.PRENOM_CLIENT)
         right = str(other.NOM_CLIENT) + str(other.PRENOM_CLIENT)
         return left < right
 
 
 class CLIENT_LIST:
     """Liste de client dans la BD"""
-    
+
     def __init__(self):
         """Initialise la liste de Client en allant chercher dans la BD"""
         self.CL = list()
@@ -82,25 +83,25 @@ class CLIENT_LIST:
         conn = None
         try:
             conn = sqlite3.connect("FACTURE.sqlt")
-        except Error as e:
+        except sqlite3.Error as e:
             print(e)
         cur = conn.cursor()
         cur.execute("SELECT * FROM CLIENT")
         rows = cur.fetchall()
         for row in rows:
             row = list(row)
-            for i,r in enumerate(row, start = 0):
-                if r == None:
+            for i, r in enumerate(row, start=0):
+                if r is None:
                     row[i] = ''
             self.CL.append(CLIENT(row[0], row[1], row[2], row[3], row[4]))
             self.CLF.append(True)
-        for i,j in enumerate(self.CLF):
-            self.CLF[i] = True            
+        for i, j in enumerate(self.CLF):
+            self.CLF[i] = True
         self.CL.sort()
         conn.close()
-        
-    def add(self, ID, TITRE_CLIENT = '', PRENOM_CLIENT = '',
-            NOM_CLIENT = '', ID_ADRESSE = ''):
+
+    def add(self, ID, TITRE_CLIENT='', PRENOM_CLIENT='',
+            NOM_CLIENT='', ID_ADRESSE=''):
         """Ajout d'un nouveau client. L'ID doit être spécifié.
         """
         self.CL.append(CLIENT(ID, TITRE_CLIENT, PRENOM_CLIENT,
@@ -111,7 +112,7 @@ class CLIENT_LIST:
         conn = None
         try:
             conn = sqlite3.connect("FACTURE.sqlt")
-        except Error as e:
+        except sqlite3.Error as e:
             print(e)
         cur = conn.cursor()
         if ID_ADRESSE == '':
@@ -141,9 +142,9 @@ class CLIENT_LIST:
                 conn = None
                 try:
                     conn = sqlite3.connect("FACTURE.sqlt")
-                except Error as e:
+                except sqlite3.Error as e:
                     print(e)
-                i.update(**kwargs)                
+                i.update(**kwargs)
                 cur = conn.cursor()
                 if i.ID_ADRESSE != '':
                     sqlstr = ("UPDATE CLIENT SET TITRE_CLIENT  = \'{}\'," +
@@ -172,20 +173,20 @@ class CLIENT_LIST:
         self.CL.sort()
 
     def delete(self, ID):
-        for i,v in enumerate(self.CL):            
+        for i, v in enumerate(self.CL):
             if v.ID == ID:
-                self.CL.pop(i)                
+                self.CL.pop(i)
                 self.CLF.pop(i)
                 conn = None
                 try:
                     conn = sqlite3.connect("FACTURE.sqlt")
-                except Error as e:
+                except sqlite3.Error as e:
                     print(e)
                 cur = conn.cursor()
                 cur.execute("DELETE FROM CLIENT WHERE ID = {}".format(ID))
                 conn.commit()
                 conn.close()
-                                    
+
     def print(self):
         """Affichage de la liste de client dans la console"""
         for i, r in enumerate(self.CL):
@@ -194,22 +195,23 @@ class CLIENT_LIST:
 
     def max_id(self):
         """ Trouver le numéro d'identité"""
-        max = 0 
+        max = 0
         for i in self.CL:
             if max < i.ID:
                 max = i.ID
         return(max)
-                       
+
     def filter(self, filter):
         """ Filter les participants """
-        max = 0
         for i, row in enumerate(self.CL):
-            str_row = "{} {} {}".format(row.TITRE_CLIENT, row.PRENOM_CLIENT, row.NOM_CLIENT)
+            str_row = "{} {} {}".format(row.TITRE_CLIENT,
+                                        row.PRENOM_CLIENT,
+                                        row.NOM_CLIENT)
             if (str_row.lower().find(filter.lower()) == -1):
                 self.CLF[i] = False
             else:
                 self.CLF[i] = True
-                
+
 
 if __name__ == "__main__":
     CL1 = CLIENT_LIST()
@@ -220,5 +222,3 @@ if __name__ == "__main__":
     CL1.filter("")
     print("\n")
     CL1.print()
-
-    
