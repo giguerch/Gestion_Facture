@@ -1,28 +1,26 @@
-### -*-       Coding: utf-8         -*-
-### Programme pour gÃ©rer mes factures.
+# -*-  Coding: utf-8 -*-
+# Programme pour gérer mes factures
 
-### Classe qui gÃ¨re la base de donnÃ©es facture.
-## Ajouter
-## Chercher
-## Retirer
-## Editer
+# Classe qui gère la base de données facture.
+# Ajouter
+# Chercher
+# Retirer
+# Editer
 
-##############################
-## Base de donnÃ©es.         ##
-##                          ##
-##  - STATUT                ##
-##    + [ID]                ##
-##    + [DESCRIPTION]       ##
-##        (En attente/PayÃ©) ##
-##                          ##
-##############################
+############################
+# Base de données.         #
+#                          #
+#  - STATUT                #
+#    + [ID]                #
+#    + [DESCRIPTION]       #
+#        (En attente/Payé) #
+#                          #
+###########################
 
-class STATUT: 
-    def __init__(self, ID = None, DESCRIPTION = None):
-        self.ID          = ID
+class STATUT:
+    def __init__(self, ID=None, DESCRIPTION=None):
+        self.ID = ID
         self.DESCRIPTION = DESCRIPTION
 
     description = "Objet contenant le type de statut"
-
-    author = "Charles-Ã‰douard GiguÃ¨re"
- 
+    author = "Charles-Édouard Giguère"

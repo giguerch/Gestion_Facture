@@ -35,7 +35,7 @@ class MyMplCanvas(FigureCanvas):
         self.compute_initial_figure()
 
         FigureCanvas.__init__(self, fig)
-         self.setParent(parent)
+        self.setParent(parent)
 
         FigureCanvas.setSizePolicy(self,
                                    QtWidgets.QSizePolicy.Expanding,
