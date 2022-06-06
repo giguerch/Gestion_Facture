@@ -1,4 +1,4 @@
-### -*-       Coding: utf-8         -*-
+# -*-       Coding: utf-8         -*-
 # Create an empty database with my usual client for testing.
 
 import sqlite3
