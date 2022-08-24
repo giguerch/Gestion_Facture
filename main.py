@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
+# -*- Coding: utf-8 -*-
+"""
+Programme principal du traitement de facture.
 
-# Programme principal du traitement de facture.
-#
-# Auteur: Charles-Édouard
-# Créé le 2020-04-22
+Auteur: Charles-Edouard
+Cree le 2020-04-22
+"""
 
 import sys
 from PyQt5 import QtWidgets

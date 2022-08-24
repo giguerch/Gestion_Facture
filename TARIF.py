@@ -1,4 +1,4 @@
-# -*-       Coding: utf-8        -*-
+# -*- coding: utf-8 -*-
 # Programme pour gérer mes factures.
 
 ############################
@@ -15,7 +15,7 @@ import sqlite3
 
 
 class TARIF:
-    """Sert à créer un tarif individuel"""
+    """Sert a creer un tarif individuel"""
 
     def __init__(self, ID='', TAUX='', DATE_CREATION=''):
         """
