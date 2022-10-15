@@ -1,33 +1,31 @@
 # -*- coding: utf-8 -*-
-# Programme pour gérer mes factures.
+"""
+Base de donnÃ©es.
 
-############################
-# Base de données.         #
-#                          #
-#  - TARIF                 #
-#    + [ID]                #
-#    + [TAUX]              #
-#    + [DATE_CREATION]     #
-#                          #
-############################
+- TARIF
+  + [ID]
+  + [TAUX]
+  + [DATE_CREATION]
+"""
 
 import sqlite3
 
 
 class TARIF:
-    """Sert a creer un tarif individuel"""
+    """Sert a creer un tarif individuel."""
 
     def __init__(self, ID='', TAUX='', DATE_CREATION=''):
         """
-           Initialise les attributs. Certains (ou tous les) attributs
-           peuvent être nuls ('')
+        Initialise les attributs.
+
+        Certains (ou tous les) attributs peuvent Ãªtre nuls ('')
         """
         self.ID = ID
         self.TAUX = TAUX
         self.DATE_CREATION = DATE_CREATION
 
     def update(self, **kwargs):
-        """You can update one or more of the 5 attributes of clients"""
+        """You can update one or more of the 5 attributes of clients."""
         for key, value in kwargs.items():
             if "ID" == key:
                 self.ID = value
@@ -37,21 +35,21 @@ class TARIF:
                 self.DATE_CREATION = value
 
     def print(self):
-        """Affiche les valeurs du Client """
+        """Affiche les valeurs du Client."""
         print("{}, {}, {}".format(self.ID, self.TAUX, self.DATE_CREATION))
 
     def __lt__(self, other):
-        """ Fonction pour ordonner la liste de client par ordre alphabétique"""
+        """Fonction pour ordonner la liste de client par ordre alphabetique."""
         left = str(self.TAUX) + str(self.TAUX)
         right = str(other.TAUX) + str(other.TAUX)
         return left < right
 
 
 class TARIF_LIST:
-    """Liste de tarif dans la BD"""
+    """Liste de tarif dans la BD."""
 
     def __init__(self):
-        """Initialise la liste de tarif en allant chercher dans la BD"""
+        """Initialise la liste de tarif en allant chercher dans la BD."""
         self.TL = list()
         conn = None
         try:
@@ -71,8 +69,7 @@ class TARIF_LIST:
         conn.close()
 
     def add(self, ID, TAUX='', DATE_CREATION=''):
-        """Ajout d'un nouveau tarif. L'ID doit Ãªtre spÃ©cifiÃ©.
-        """
+        """Ajout d'un nouveau tarif. L'ID doit etre specifie."""
         self.TL.append(TARIF(ID, TAUX, DATE_CREATION))
         conn = None
         try:
@@ -87,8 +84,11 @@ class TARIF_LIST:
         self.TL.sort()
 
     def update(self, ID, **kwargs):
-        """Update d'un client. Un ID doit être spécifié pour que ça marche """
+        """
+        Update d'un client.
 
+        Un ID doit etre specifie pour que ca marche.
+        """
         for i in self.TL:
             if i.ID == ID:
                 conn = None
@@ -112,6 +112,7 @@ class TARIF_LIST:
         self.TL.sort()
 
     def delete(self, ID):
+        """Effacer un tarif."""
         for i, v in enumerate(self.TL):
             if v.ID == ID:
                 self.TL.pop(i)
@@ -126,12 +127,12 @@ class TARIF_LIST:
                 conn.close()
 
     def print(self):
-        """Affichage de la liste de client dans la console"""
+        """Affichage de la liste de client dans la console."""
         for i, r in enumerate(self.TL):
             r.print()
 
     def max_id(self):
-        """ Trouver le numÃ©ro d'identitÃ©"""
+        """Trouver le numero d'identite."""
         max = 0
         for i in self.TL:
             if max < i.ID:
