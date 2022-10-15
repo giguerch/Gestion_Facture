@@ -154,6 +154,8 @@ class Ui_MainWindow(QMainWindow):
                     item.setForeground(Qt.blue)
                 elif fl.ID_STATUT == 3:
                     item.setForeground(Qt.red)
+                elif fl.ID_STATUT == 4:
+                    item.setForeground(Qt.darkGreen)
                 self.listWidget.addItem(item)
 
     # This is where the name of the widgets are set.

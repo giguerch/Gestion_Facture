@@ -196,7 +196,7 @@ class FACTURE_MOD_UI(QDialog):
         self.STATUT_FACTURE_COMBO = QtWidgets.QComboBox(self)
         self.STATUT_FACTURE_COMBO.setGeometry(QtCore.QRect(522, 40, 151, 22))
         self.STATUT_FACTURE_COMBO.setObjectName("STATUT_FACTURE_COMBO")
-        for i in range(0, 3):
+        for i in range(0, 4):
             self.STATUT_FACTURE_COMBO.addItem("")
 
         # Bouton OK Cancel
@@ -424,3 +424,6 @@ class FACTURE_MOD_UI(QDialog):
                                               _translate("Dialog", "PAYÉ"))
         self.STATUT_FACTURE_COMBO.setItemText(2,
                                               _translate("Dialog", "ANNULÉ"))
+        self.STATUT_FACTURE_COMBO.setItemText(3,
+                                              _translate("Dialog",
+                                                         "EN TRAITEMENT"))
