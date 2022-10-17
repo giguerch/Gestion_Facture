@@ -4,7 +4,7 @@
 import sqlite3
 
 # Variable Client_id.
-CLIENT_ID = 1
+CLIENT_ID = 5
 
 
 conn = None
@@ -24,7 +24,7 @@ WHERE ID_STATUT = 2 AND
       A.ID_TARIF = TARIF.ID;
 """)
 
-print(sqlstr)
 cur.execute(sqlstr)
-conn.commit()
+rows = cur.fetchall()
+print(rows)
 conn.close()

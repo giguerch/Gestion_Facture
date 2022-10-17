@@ -15,6 +15,7 @@ from CLIENT_UI import Ui_CLIENT
 from FACTURE import FACTURE_LIST
 from FACTURE_ADD_UI import FACTURE_ADD_UI
 from FACTURE_MOD_UI import FACTURE_MOD_UI
+from RAPPORT_CLIENT_UI import Ui_RAPPORT_CLIENT
 import sys
 
 
@@ -98,12 +99,19 @@ class Ui_MainWindow(QMainWindow):
         self.action_propos.triggered.connect(self.apropos)
         # Call the client management window (MENU)
         self.actionG_rer_les_clients.triggered.connect(self.GClient)
+        # See stats on clients
+        self.actionPar_client.triggered.connect(self.RClient)
         # Remove an invoice.
         self.RetirerBouton.clicked.connect(self.remFacture)
         # modify an invoice by clicking modify button or by double clicking
         # on invoice.
         self.ModifierBouton.clicked.connect(self.modFacture)
         self.listWidget.doubleClicked.connect(self.modFacture)
+
+    # Function that calls the stats on client window.
+    def RClient(self):
+        dial = QDialog()
+        Ui_RAPPORT_CLIENT(dial)
 
     # Function that calls the modification window
     def modFacture(self):
