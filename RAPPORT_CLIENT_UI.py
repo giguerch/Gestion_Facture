@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QDialog
+from RAPPORT_CLIENT import RESUME_CLIENT_LIST
 
 
 class Ui_RAPPORT_CLIENT(QDialog):
@@ -21,27 +22,19 @@ class Ui_RAPPORT_CLIENT(QDialog):
         self.buttonBox = QtWidgets.QDialogButtonBox(self)
         self.buttonBox.setGeometry(QtCore.QRect(210, 600, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel |
+                                          QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.treeWidget = QtWidgets.QTreeWidget(self)
         self.treeWidget.setGeometry(QtCore.QRect(20, 50, 361, 511))
         self.treeWidget.setObjectName("treeWidget")
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-
+        self.RCL = RESUME_CLIENT_LIST()
+        for i in range(0, len(self.RCL.RCL)):
+            item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
+            QtWidgets.QTreeWidgetItem(item_0)
+            QtWidgets.QTreeWidgetItem(item_0)
+            QtWidgets.QTreeWidgetItem(item_0)
+            QtWidgets.QTreeWidgetItem(item_0)
         self.retranslateUi(self)
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.reject)
@@ -51,22 +44,21 @@ class Ui_RAPPORT_CLIENT(QDialog):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.treeWidget.headerItem().setText(0, _translate("Dialog", "Statistique sur les clients"))
+        self.treeWidget.headerItem().setText(0, _translate(
+            "Dialog",
+            "Statistique sur les clients"))
         __sortingEnabled = self.treeWidget.isSortingEnabled()
         self.treeWidget.setSortingEnabled(False)
-        self.treeWidget.topLevelItem(0).setText(0, _translate("Dialog", "Total "))
-        self.treeWidget.topLevelItem(0).child(0).setText(0, _translate("Dialog", "Nb de factures: 30"))
-        self.treeWidget.topLevelItem(0).child(1).setText(0, _translate("Dialog", "Année du premier contrat: 2008"))
-        self.treeWidget.topLevelItem(0).child(2).setText(0, _translate("Dialog", "Année du dernier contrat: 2022"))
-        self.treeWidget.topLevelItem(0).child(3).setText(0, _translate("Dialog", "Montant total: 100000$"))
-        self.treeWidget.topLevelItem(1).setText(0, _translate("Dialog", "Sandra Favret"))
-        self.treeWidget.topLevelItem(1).child(0).setText(0, _translate("Dialog", "Nb de factures: 3"))
-        self.treeWidget.topLevelItem(1).child(1).setText(0, _translate("Dialog", "Année du premier contrat: 2012"))
-        self.treeWidget.topLevelItem(1).child(2).setText(0, _translate("Dialog", "Année du dernier contrat: 2022"))
-        self.treeWidget.topLevelItem(1).child(3).setText(0, _translate("Dialog", "Montant total: 20000$"))
-        self.treeWidget.topLevelItem(2).setText(0, _translate("Dialog", "Isabelle Brunette"))
-        self.treeWidget.topLevelItem(2).child(0).setText(0, _translate("Dialog", "Nb de factures: 2"))
-        self.treeWidget.topLevelItem(2).child(1).setText(0, _translate("Dialog", "Année du premier contrat: 2015"))
-        self.treeWidget.topLevelItem(2).child(2).setText(0, _translate("Dialog", "Année du dernier contrat: 2015"))
-        self.treeWidget.topLevelItem(2).child(3).setText(0, _translate("Dialog", "Montant total: 3000$"))
+
+        for i, j in enumerate(self.RCL.RCL):
+            self.treeWidget.topLevelItem(i).setText(0, _translate("Dialog",
+                                                                  j.NOM))
+            self.treeWidget.topLevelItem(i).child(0).setText(0, _translate(
+                "Dialog", "Nb de factures: {}".format(j.N_FACTURE)))
+            self.treeWidget.topLevelItem(i).child(1).setText(0, _translate(
+                "Dialog", "Année du premier contrat: {}".format(j.MIN_YEAR)))
+            self.treeWidget.topLevelItem(i).child(2).setText(0, _translate(
+                "Dialog", "Année du dernier contrat: {}".format(j.MAX_YEAR)))
+            self.treeWidget.topLevelItem(i).child(3).setText(0, _translate(
+                "Dialog", "Montant total: {}".format(j.MONTANT)))
         self.treeWidget.setSortingEnabled(__sortingEnabled)

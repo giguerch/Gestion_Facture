@@ -30,6 +30,7 @@ test.remove('FACTURES')
 test.remove('SQLCREATE')
 test.remove('USER_INTERFACE')
 test.remove('FACTURE.sqlt')
+test.remove('Template.tex')
 
 for t in test:
     shutil.copyfile(currdir + "\\" + t,
