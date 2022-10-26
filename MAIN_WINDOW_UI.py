@@ -16,6 +16,7 @@ from FACTURE import FACTURE_LIST
 from FACTURE_ADD_UI import FACTURE_ADD_UI
 from FACTURE_MOD_UI import FACTURE_MOD_UI
 from RAPPORT_CLIENT_UI import Ui_RAPPORT_CLIENT
+from RAPPORT_ANNEE_UI import Ui_RAPPORT_ANNEE
 import sys
 
 
@@ -101,6 +102,8 @@ class Ui_MainWindow(QMainWindow):
         self.actionG_rer_les_clients.triggered.connect(self.GClient)
         # See stats on clients
         self.actionPar_client.triggered.connect(self.RClient)
+        # See stats on year
+        self.actionPar_ann_e.triggered.connect(self.RYear)
         # Remove an invoice.
         self.RetirerBouton.clicked.connect(self.remFacture)
         # modify an invoice by clicking modify button or by double clicking
@@ -112,6 +115,10 @@ class Ui_MainWindow(QMainWindow):
     def RClient(self):
         dial = QDialog()
         Ui_RAPPORT_CLIENT(dial)
+
+    def RYear(self):
+        dial = QDialog()
+        Ui_RAPPORT_ANNEE(dial)
 
     # Function that calls the modification window
     def modFacture(self):
